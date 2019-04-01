@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The Last Crusade I  </title></head>
+    <body><textarea theme="Journal">
+
+
 # Énoncé
 
 Le but de ce puzzle est de prédire le chemin que le personnage prendra dans un labyrinthe en fonction de la topologie des pièces. La résolution de cet exercice repose essentiellement sur l'utilisation correcte des tableaux associatifs. Si vous savez les gérer correctement et créer les bonnes associations, le code final devrait être assez court.
@@ -184,3 +191,9 @@ switch (x) {
 System.out.println(XI+" "+YI);
 
 ```
+
+</textarea>
+        <script type="text/javascript" src="//lbesson.bitbucket.io/md/strapdown.min.js"></script>
+    </body>
+</html>
+
