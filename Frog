@@ -1,0 +1,110 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution {
+
+
+    public static double speed_X (int alpha,double speed){
+            
+            double alpha0 = Math.toRadians(alpha);
+            
+            double temp =  (Math.cos(alpha0) * speed);   
+            return temp  ;      
+        }
+
+
+
+    public static double speed_Y (int alpha,double speed){
+        
+            double alpha0 = Math.toRadians(alpha);
+
+            
+            return ( (Math.sin(alpha0) * speed));           
+        }
+
+
+    public static double time (double y , double spY, double b){
+        double delta = (double)(spY * spY - (4 *(b * 0.5) * y ));
+       double t = ((-spY -Math.sqrt(delta)) / (2 * b * 0.5));
+        return Math.abs (t);
+        }
+        
+    public static double xf(double t , double a,double spX,double x ){
+        double x1 = ((a  * 0.5 * t * t ) + (spX * t) + x);
+        return x1;
+        }
+        
+        public static  ArrayList<Double> dec(String s){
+            ArrayList<Double> l = new ArrayList<Double>() ;
+            String[] S = s.split(" ");
+            for (String si : S){
+                double temp = Double.parseDouble(si);
+                    l.add(temp);
+                }
+            
+        return l ;
+        }
+
+
+    public static void main(String args[]) {
+        Scanner in = new Scanner(System.in);
+        int frogNumber = in.nextInt();
+        if (in.hasNextLine()) {
+            in.nextLine();
+        }
+        String frogsDistance = in.nextLine();
+        String initialPosition = in.nextLine();
+        
+        ArrayList<Double> l = dec(frogsDistance);
+        
+        int  x = Integer.parseInt (initialPosition.split(" ")[0]);
+        int  y = Integer.parseInt (initialPosition.split(" ")[1]);
+
+        
+        int mass = in.nextInt();
+        int alpha = in.nextInt();
+        double speed = in.nextDouble();
+        if (in.hasNextLine()) {
+            in.nextLine();
+        }
+        String gravity = in.nextLine();
+        
+        double a = Double.parseDouble  (gravity.split(" ")[0]);
+        double b = Double.parseDouble  (gravity.split(" ")[1]);
+
+        
+        double spX = speed_X(alpha,speed);
+        double spY = speed_Y (alpha,speed);
+        double t = time(y,spY,  b);
+        double x2 = (double)Math.round((xf(t,a,spX,x)) * 100) / 100;
+        
+        l.add(x2);
+        Collections.sort(l);
+        Collections.reverse(l);
+        
+        
+      System.err.println(x2);
+
+        int j = 1;
+        for (int i = 0 ; i < l.size();i++){
+            if (Math.abs((l.get(i)) - x2) > 0.001 ){j++;}
+           else {break; }
+           
+            System.err.print(l.get(i) + " ");
+            }
+
+        System.err.println();
+        System.err.println(l.size());
+        System.out.println(j);
+        // Write an action using System.out.println()
+    
+        // To debug: System.err.println("Debug messages...");
+
+        
+    }
+}
