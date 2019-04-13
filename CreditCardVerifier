@@ -1,0 +1,83 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution {
+
+    public static int etape1(ArrayList<Integer> x){
+        int n = x.size();
+        int somme = 0 ;
+        for (int i = 0 ; i< n ; i = i+2){
+            int temp =  2*x.get(i);
+            if (temp <= 9){
+                somme = somme + temp;
+            }
+            else {
+                somme = somme + (temp - 9);
+            }
+        }
+        return somme ;
+    }
+
+
+
+
+    public static int etape2(ArrayList<Integer> x){
+        int n = x.size();
+        int somme = 0 ;
+        for (int i = 1 ; i< n ; i = i+2){
+           
+            somme = somme + x.get(i);
+        }
+        return somme ;
+    }
+
+    public static boolean finale (ArrayList<Integer>l){
+        int x = etape1(l) + etape2(l);
+        return (x%10 == 0);
+    }
+    
+    public static void aff(boolean b){
+        if (b){
+            System.out.println("YES");
+            }
+        else {
+             System.out.println("NO");
+            }
+        }
+
+
+    public static void main(String args[]) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        if (in.hasNextLine()) {
+            in.nextLine();
+        }
+      
+        for (int j = 0; j < n; j++) {
+            String card = in.nextLine();
+
+            int m = card.length();
+            char[]c = new char[m];
+            for(int i = 0; i < m;i++){
+                c[i] =card.charAt(i);
+            }
+            ArrayList <Integer>l = new ArrayList<Integer>();
+        for (char e : c){
+            if(Character.isDigit(e)){
+                int x = Integer.parseInt(Character.toString(e));
+                l.add(x);
+            }
+        }
+        aff(finale(l));
+        }
+
+        // Write an action using System.out.println()
+        // To debug: System.err.println("Debug messages...");
+
+    }
+}
