@@ -6,7 +6,7 @@ import java.math.*;
  * Auto-generated code below aims at helping you parse
  * the standard input according to the problem statement.
  **/
-class MoisBase {
+class Solution {
    static List<Integer> ent = Arrays.asList(0,1,2,3,4,5,6,7,8,9,10,11);
    static List<String> mois = Arrays.asList("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
 
@@ -173,13 +173,18 @@ class MoisBase {
 
 
     public static void main(String args[]) {
-        //Scanner in = new Scanner(System.in);
-        //int N = in.nextInt();
-        //String[] l = new String [N];
-        int N = 4 ;
-        String[] l = {"JanJanSepOctDecNovFeb", "JulJunAugOctSep","JunJunMarJan","DecOctAugMay"};
-    
-      
+        Scanner in = new Scanner(System.in);
+        int N = in.nextInt();
+        String[] l = new String [N];
+
+        if (in.hasNextLine()) {
+            in.nextLine();
+        }
+        for (int i = 0; i < N; i++) {
+            String M = in.nextLine();
+            l[i] = M;
+        }
+
         // Write an action using System.out.println()
         // To debug: System.err.println("Debug messages...");
 
