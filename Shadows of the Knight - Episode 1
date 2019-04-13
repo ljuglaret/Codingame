@@ -1,0 +1,90 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Player {
+
+    public static void main(String args[]) {
+        Scanner in = new Scanner(System.in);
+        int W = in.nextInt(); // width of the building.
+        int H = in.nextInt(); // height of the building.
+        int N = in.nextInt(); // maximum number of turns before game over.
+        int X0 = in.nextInt();
+        int Y0 = in.nextInt();
+        
+        int posX = X0;
+        int posY = Y0;
+            
+            int borneHaut = 0;
+            int borneBas = H - 1 ;
+            int borneGauche = 0;
+            int borneDroite = W - 1 ;
+     
+     
+     int milieuX = 1;
+     int milieuY = 1;
+     int dirx = 1 , diry = 1;
+            
+        // game loop
+        while (true) {
+
+
+            String bomDir = in.next(); // the direction of the bombs from batman's current location (U, UR, R, DR, D, DL, L or UL)
+
+
+             if (bomDir.equals("U")) {
+             
+                borneBas =  posY - 1 ;
+
+
+            }
+            else if (bomDir.equals("D")) {
+                   
+                borneHaut =  posY + 1;
+
+            }
+             else if (bomDir.equals("R")) {
+                    borneGauche = posX  + 1;
+            } 
+             else if (bomDir.equals("L")) {
+                    borneDroite = posX - 1 ;
+
+            }
+            
+            
+            else if (bomDir.equals("UR")) {
+                borneBas =  posY - 1;
+                borneGauche = posX  + 1;
+
+        
+            }
+             else if (bomDir.equals("UL")) {
+                borneBas =  posY - 1;
+                borneDroite = posX  - 1;
+ 
+
+            }
+            else if (bomDir.equals("DR")) {
+                borneHaut =  posY + 1;
+                borneGauche = posX  + 1;
+
+                    
+               
+            
+
+            }
+            else if (bomDir.equals("DL")) {
+                borneHaut =  posY + 1;
+                borneDroite = posX  - 1;
+
+            }
+            posX = (borneGauche + borneDroite) / 2;
+            posY = (borneHaut + borneBas)/2;
+            System.out.println(posX + " " + posY);
+        }
+    }
+}
