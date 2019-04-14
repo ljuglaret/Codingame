@@ -1,0 +1,91 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class DigitSumSuccessor {
+
+    public static long sommeDigit(long N){
+        long res = 0;
+
+        while (N!=0){
+            res = res + N%10;
+            N = N/10;
+        }
+
+        return res;
+    } 
+
+    public static String xFois(String s,int x){
+        String ret = "";
+        
+        for (int i = 0 ; i< x;i++){
+            ret = ret+s;
+        }
+
+        return ret;
+
+    }
+
+    public static boolean xpuisZero(String s ){
+        int t = s.length();
+        Character[]c = new Character[t];
+        boolean res = true;
+        //char prem = s.charAt(0);
+        for (int i = 1 ; i < t; i++){
+            c[i] = s.charAt(i);
+            if(c[i]!='0'){res=false;}
+        }
+        return res;
+    }
+
+    public static String calcul(String s){
+        String res = "";
+        int t = s.length();
+        boolean queDes9 = true;
+        Character[]c = new Character[t];
+        String retour = "18";
+        String neuf = "9"; 
+        for (int i = 0 ; i < t; i++){
+            c[i] = s.charAt(i);
+            if(c[i]!='9'){
+                queDes9 = false;
+            }
+        }
+        if (xpuisZero(s)){
+            int premierChiffre = Integer.parseInt(String.valueOf(c[0]));
+            int debut = 1 ;
+            int fin = premierChiffre - debut;
+            int nbDeZeros = t - 1 ;
+            String temp = "1"+xFois("0", nbDeZeros) + String.valueOf(fin);
+            res = temp;
+        }
+        else if(queDes9){
+            retour = retour + xFois("9",t-1);
+            res = retour;
+        }
+        else  {
+            long N =  Long.parseLong(s);
+            long N2 = sommeDigit(N);
+            long S = N + 1;
+            long Y = sommeDigit(S);
+            while (Y!=N2 ){
+                S++;
+                Y = sommeDigit(S);
+            }
+            res = String.valueOf(S);
+    
+
+        }
+        return res;
+    }
+
+    public static void main(String args[]) {
+        //String N = "7000000000"; 
+        String N =  "3699993000";
+        System.out.println(calcul(N));
+    }
+}
