@@ -1,195 +1,114 @@
-import java.util.*;
-import java.io.*;
-import java.math.*;
-
-/**
- * Auto-generated code below aims at helping you parse
- * the standard input according to the problem statement.
- **/
-class Solution {
-   static List<Integer> ent = Arrays.asList(0,1,2,3,4,5,6,7,8,9,10,11);
-   static List<String> mois = Arrays.asList("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+import System.IO
+import Control.Monad
+import Data.List
+import Data.String
 
 
+main :: IO ()
+main = do
+    hSetBuffering stdout NoBuffering -- DO NOT REMOVE
+    
+    -- Auto-generated code below aims at helping you parse
+    -- the standard input according to the problem statement.
+    
+    input_line <- getLine
+    let n = read input_line :: Int
+    
+    l<-replicateM n $ do
+        m <- getLine
+        --putStrLn m
 
-    public static ArrayList<ArrayList<Integer>> matRect(ArrayList<ArrayList<Integer>> l){
-        ArrayList<ArrayList<Integer>> l2 = new ArrayList<ArrayList<Integer>>();
-        
-        int ligneComplete = 0;
-
-        for (int i = 0 ; i < l.size() ; i++){
-            if (l.get(i).size() > ligneComplete){
-                ligneComplete = l.get(i).size();
-            }
-        }
-
-        for (int i = 0 ; i < l.size() ; i++){
-            if (l.get(i).size() == ligneComplete){
-                l2.add(l.get(i));
-            }
-            else {
-                ArrayList<Integer> temp = new ArrayList<Integer>();
-                for (int j = 0 ; j <  ligneComplete - l.get(i).size()   ;j++){
-                      temp.add(0);
-                }
-                for ( int  j = 0; j< l.get(i).size()  ; j++ ){
-                    temp.add(l.get(i).get(j ));
-                }
-                l2.add(temp);
-
-            }        
-        }
-        return l2; 
-    }
+        return (m)
+    
+    -- hPutStrLn stderr "Debug messages..."
+    
+    putStrLn(concat(partie3 l))
+    -- Write answer to stdout
+    return ()
+    
+    
+    
+prendre x str = take x str    
 
 
 
-
-    public static String[] lire (String s){
-        String[] r = s.split("(?=\\p{Upper})");
-        return r;
-    }
-
-    public static void aff(ArrayList<ArrayList<Integer>>l){
-        for (ArrayList<Integer>i : l ){
-            for (int e : i){
-                System.out.print(e+ " ");
-            }
-            System.out.println();
-        }
-
-    }
-
-    public static int versInt(String s) {
-        int i = 0 ; 
-        int ind = 0 ;
-        for(String m : mois){
-            if (m.equals(s)){
-                ind = i;
-            }
-            else {
-                i++;
-            }
-        }
-    return ind;
-    }
+laisser x str = drop x str
 
 
-
-    public static String versMois(int x) {
-        return  mois.get(x);
-    }
+decoupe str = 
+    if str == ""
+    then []
+    else (prendre 3 str) : (decoupe (laisser 3 str))
     
 
-    public static  ArrayList<ArrayList<Integer>> versTabInt (String[] s){
-        int a = 0 ; 
-        ArrayList<ArrayList<Integer>> l = new ArrayList<ArrayList<Integer>>();
-                for (String e  : s){
-                String[]temp = new String[e.length()];
-                ArrayList<Integer> temp2  = new ArrayList<Integer>();
-                temp = lire(e);
-                for (String t : temp){
-                    int tempInt = versInt(t);
-                    temp2.add(tempInt);
-                }
-                l.add(temp2);
-        }
-            return l;
-    }
+listeMois =  ["Jan" , "Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]::[String]
+
+listeMoisCh = [0,1,2,3,4,5,6,7,8,9,10,11]::[Int]
 
 
-    public static ArrayList<ArrayList<Integer>> renverse (ArrayList<ArrayList<Integer>>l){
-        ArrayList<ArrayList<Integer>> l2 = new ArrayList<ArrayList<Integer>>();
-        for (ArrayList<Integer> e : l){
-            for (int i= 0; i < e.size()  ;i++){
-                l2.add(l.get(e.size() - 1 - i));
-            }
-        }  
-        
-        return l2;
-    }
-        
-    public static int sommel(ArrayList<Integer>l){
-        int somme = 0 ; 
-        for (int e : l){
-            somme = somme + e ;
-        }
-        return somme ;
-    }
+correp1  str l1 l2 =
+    case (l1,l2) of 
+        (x:s1,y:s2) -> if(x == str) then y
+                        else correp1 str s1 s2
+        (_,_) -> 0
+
+correp2 str l1 l2=
+    case (l1,l2) of 
+        (x:s1,y:s2) -> if(y == str) then x
+                        else correp2 str s1 s2
+        (_,_) -> ""
+
+moisVersCh str = correp1 str listeMois listeMoisCh
 
 
-    static  ArrayList<ArrayList<Integer>> formate(ArrayList<ArrayList<Integer>> table) {
-        ArrayList<ArrayList<Integer>> ret = new ArrayList<ArrayList<Integer>>();
-        final int N = table.get(0).size();
-        for (int i = 0; i < N; i++) {
-            ArrayList<Integer> col = new ArrayList<Integer>();
-            for (ArrayList<Integer> row : table) {
-                col.add(row.get(i));
-            }
-            ret.add(col);
-        }
-        Collections.reverse(ret);
-        return ret;
-    }
-
-    public static ArrayList<Integer> addEnBase12 (ArrayList<ArrayList<Integer>>l){
-        int a = 0;
-        int reste =  0;
-        ArrayList<Integer> s =  new ArrayList<Integer>() ;
-            for (ArrayList<Integer> e : l){
-                
-                int somme = (reste  + sommel(e))%12;
-                reste =  (reste  + sommel(e))/12;
-                s.add(somme);
-
-            }
-        Collections.reverse(s);
-        return s;
-    }
-    
-    public static String rep (String[] l){
-                ArrayList<Integer> l2 = addEnBase12(formate(matRect(versTabInt(l))));
-
-        String r = "" ;
-          if (l2.size() == 1){  r = r + versMois(l2.get(0));}
-        else {
-            if (l2.get(0) == 0 && (l2.get(1) != 0)){
-                for (int i = 1 ; i< l2.size();i++ ){
-                    r = r + versMois(l2.get(i));
+remplacement str = 
+    let
+        str2 = decoupe str
+    in
+        map(\s -> moisVersCh s) str2
 
 
-            }
-        }
-        else {
-                for (int i = 0 ; i< l2.size();i++ ){
-                   r  = r + versMois(l2.get(i));
-            }
-        }
-        }
-        return r;
-    }
-        
-        
+  
+litEnbase12 s = 
+    let  
+        aux acc douze l0 =
+            case l0 of
+                x:suite -> aux (acc + (x*douze)) (douze*12) suite
+                []       -> acc
+
+    in aux 0 1 (reverse s)
+
+partie1 str = litEnbase12(remplacement str) 
+
+sommeGenerale :: [String] -> Int
+sommeGenerale ls =   fromIntegral (sum(map (\elt -> partie1 elt) ls)) 
 
 
-    public static void main(String args[]) {
-        Scanner in = new Scanner(System.in);
-        int N = in.nextInt();
-        String[] l = new String [N];
+basef :: Int -> Int -> [Int] 
+basef b nombre = 
+    let 
+        aux :: [Int] ->Int -> Int ->  [Int]
+        aux acc base nb =
+            if (nb > 0) 
+            then aux (nb `mod` base: acc) base (nb `quot` base)
+            else  acc 
 
-        if (in.hasNextLine()) {
-            in.nextLine();
-        }
-        for (int i = 0; i < N; i++) {
-            String M = in.nextLine();
-            l[i] = M;
-        }
+    in aux [] b nombre
 
-        // Write an action using System.out.println()
-        // To debug: System.err.println("Debug messages...");
+base12 :: Int -> [Int]
+base12 nb = basef 12 nb
 
-        //String rep = "";
-      
-    System.out.print(rep(l));
-    }
-}
+
+partie2 ::[ String] -> [ Int]
+partie2 s =
+    let 
+        l = sommeGenerale s 
+    in base12  l
+
+
+chVersMois :: Int -> String
+chVersMois str = (correp2 str listeMois listeMoisCh)
+
+partie3:: [String] -> [String]
+partie3 l = map(\elt -> chVersMois elt)(partie2 l)
+
