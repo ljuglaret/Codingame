@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Extremum </title></head>
+<body><textarea theme="Journal">
+
+# Des extremums et des petits pièges.
+
+## Horse Racing 1 
+
+Il s agit d une course de chevaux.   
+Le but est d obtenir la difference entre les deux puissances les plus proches.
+
+L'astuce principale consiste à trier le tableau.
+
+```java
+//l le tableau des puissance de chaque cheval.
+//N la taille de l 
+Collections.sort(l);
+        int mini = Integer.MAX_VALUE;
+        int ecart = 0 ;
+        for (int i = 0 ; i < N - 1  ; i ++){
+          
+                ecart =l.get(i + 1 ) - l.get(i);
+                if (ecart <= mini){
+                    mini = ecart ; 
+                }
+            }
+        
+        System.out.println(mini);
+```
+
+## Horse Racing 2 
+
+Même principe que precédemment, seule différence : 
+la fonction distance prend plus de paramètres :
+
+```java
+public static int dist(int v1 , int e1 , int v2, int e2){
+        int x =  Math.abs(v2 - v1) + Math.abs(e2 - e1);
+        return x;
+}
+```
+
+Comparaison : 
+
+```java
+for (int i = 0 ; i < N - 1 ; i ++) {
+    for (int j = i + 1 ; j < N ; j++){
+        int temp = dist(tv[i], te[i], tv[j], te[j]);  
+        if (temp < mini){
+            mini = temp;
+        }
+    }
+}
+```
+
+## Frog 
+
+Dans ce puzzle il s'agit de déterminer la position finale d'une grenouille lors d'une course.
+Simple? Oui mais il faudra faire attentions aux détails sans ça les calculs seront imprécis et donc faux.
+
+Soient : 
+
+- x2  la distance parcourue par notre grenouille.   
+- l est le tableau des distances parcourues de toutes les grenouilles ++ x2.
+
+## Point important numéro 1 ##
+
+On ne peut comparer que ce qui est  comparable.   
+Or les positions des autres grenouilles sont données avec une précision de 0.01. Donc on doit arrondir la distance trouvée pour notre grenouille.
+
+
+```java
+// xf(t,a,spX,x)  permet de calculer la distance parcourue par notre grenouille en fonction de plusieurs paramètres : temps, gravité, vitesse position initiale.
+
+double x2 = (double)Math.round((xf(t,a,spX,x)) * 100) / 100;
+```
+
+## Point important numéro 2 ##
+
+Il faut penser à trier le tableau l puis surtout inverser ses éléments.   
+En effet nous voulons :
+- Attribuer la position 1 au participant ayant le plus grand saut.
+- Récupérer le premier indice i tel que i soit égal à x2 .
+
+Soit  l  une ArrayList, le tri décroissant s'écrit :
+
+```java
+Collections.sort(l);
+Collections.reverse(l);
+```
+
+## Point important numéro 3 ##
+
+Comparer deux entiers c'est facile. Mais comparer deux flottants c'est un peu plus subtil.   
+En effet .
+
+Deux méthodes :
+
+Comparer leur écart en valeur absolue à 0.001, puisque dans ce cas, il s'agit de valeurs arrondies au centième.
+
+```java
+double d1;
+double d2;
+boolean egalite = Math.abs( d1 - d2 ) > 0.001;
+```
+Si egalité vaut false alors d1 <> d2.
+
+
+On peut aussi recourir à une méthode plus générale : 
+
+```java
+double d1;
+double d2;
+int egalite = Double.compare(d1, d2);
+```
+Si egalité vaut 0 alors d1 == d2
+
+## Le noyau du problème ##
+```java
+ int j = 1;
+        for (int i = 0 ; i < l.size();i++){
+            if (Math.abs((l.get(i)) - x2) > 0.001 ){
+                j++;
+                }
+           else {
+               break;
+               }
+        }
+        System.out.println(j);
+
+```
+
+
+</textarea>
+        <script type="text/javascript" src="//lbesson.bitbucket.io/md/strapdown.min.js"></script>
+    </body>
+</html>
