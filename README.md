@@ -21,9 +21,9 @@
 
 
 
-## Medium
-	
-	<a href = "DigitSumSuccessor"> DigitSumSuccessor</a>
+## Medium   
+
+  <a href = "DigitSumSuccessor"> DigitSumSuccessor</a>
   <a href = "KaprekarsRoutine"> Kaprekar s Routine  </a>   
 	<a href = "MagicSquare"> MagicSquare  </a>   
 	<a href = "MicroAssembly"> MicroAssembly </a>   
@@ -33,3 +33,7 @@
 	<a href = "TheReplacement">TheReplacement </a>   
 	<a href = "Shadows%20of%20the%20Knight%20-%20Episode%201"> Shadows Of The Knight Episode 1 </a>   
 	<a href = "SumOfDivisors"> Sum Of Divisors 	</a>   
+	<a href = "MagicStones"> Magic Stones	</a>  
+	<a href = "NumberOfLettersInANumberBinary"> Number of letters in a number - Binary</a>  
+	<a href = "NumeralSystem"> Numeral System</a>  
+	
