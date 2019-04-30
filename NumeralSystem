@@ -1,0 +1,80 @@
+import System.IO
+import Control.Monad
+import Data.Char
+import Data.List.Split
+
+main :: IO ()
+main = do
+    hSetBuffering stdout NoBuffering -- DO NOT REMOVE
+    
+    -- Auto-generated code below aims at helping you parse
+    -- the standard input according to the problem statement.
+    
+    equality <- getLine
+    
+    -- hPutStrLn stderr "Debug messages..."
+    
+    -- Write answer to stdout
+    putStrLn (show(addition equality))
+    return ()
+    
+critere :: Char -> Maybe Int 
+critere c = 
+        if (isDigit c )
+        then Just ((fromEnum c) - 48)
+        else 
+            if (fromEnum c >= 65 && fromEnum c <=90)
+            then Just((fromEnum c )  - 55 )
+            else Nothing
+
+
+maybecons :: Maybe t -> [t] -> [t]
+maybecons Nothing l = l
+maybecons (Just e) l = e : l
+ 
+-- Variant of map which deletes elements if the map function returns Nothing.
+filtermap :: (a -> Maybe b) -> [a] -> [b]
+filtermap _ [] = []
+filtermap f (a:as) = maybecons (f a) $ filtermap f as
+
+
+versDigit  ::[String] -> [Int]
+versDigit str = 
+    case str of 
+        tete : suite -> filtermap (\elt -> critere elt) tete  
+        [] -> []
+
+lecture :: String -> ([Int],[Int],[Int])
+lecture str = 
+    let 
+        t = splitOn  "=" str 
+        z = drop 1 t 
+        tete = take 1 t 
+        l = concat( map(\elt -> splitOn "+" elt) tete )
+        x = take 1 l   
+        y = drop 1 l
+    in (versDigit x, versDigit y , versDigit z)
+
+depuisBaseI :: Int -> [ Int ]-> Int 
+depuisBaseI i l = 
+    let 
+        fct base x y =  x + base*y
+    in foldr(fct i) 0 (reverse l)
+     
+     
+
+baseValide :: ([Int],[Int],[Int]) -> Int -> Bool 
+baseValide (a,b,c) x = all(\elt -> elt<x) a 
+                        && all(\elt -> elt<x) b 
+                        &&  all(\elt -> elt<x) c
+   
+        
+addition :: String -> Int 
+addition str = 
+     let 
+        aux i (a, b, c) =
+            if ((baseValide(a,b,c)i ) 
+                && ((depuisBaseI i a ) +(depuisBaseI i b ) == (depuisBaseI i c ))) 
+            then i 
+            else aux(i+1) (a,b,c)
+    in aux 2 (lecture str )
