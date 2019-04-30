@@ -1,0 +1,58 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution {
+
+    public static void main(String args[]) {
+        List<Integer> l = new ArrayList<Integer>();
+        Scanner in = new Scanner(System.in);
+        int N = in.nextInt();
+        for (int i = 0; i < N; i++) {
+            int x = in.nextInt();
+            l.add(x);
+        }
+
+         List<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>(); 
+    for(int i= 0  ; i< l.size() - 1 ; i++){
+        ArrayList<Integer> temp = new ArrayList<Integer> ();
+        temp.add(l.get(i));
+        int cpt = 0 ; 
+        cpt = l.get(i);
+
+        for(int j = i + 1  ; j < l.size();j++){
+            if(l.get(j) == 1 + cpt){
+                cpt = l .get(j);
+                temp.add(l.get(j));
+            }
+        }
+        res.add(temp);
+    }
+    int maxi = 0  ;
+    int tete = Integer.MAX_VALUE;
+    ArrayList<Integer> v = new ArrayList<Integer>();
+    for(ArrayList<Integer> e : res){
+        //System.out.println(String.valueOf(e));
+        if(e.size() > maxi){
+            maxi = e.size();
+           v = e;
+        }
+        if(e.size() == maxi){
+            if (e.get(0)< tete){
+                tete = e.get(0);
+                v = e;
+            }
+        }
+    }
+
+    for(int i = 0 ; i < v.size() -1 ; i++){
+        System.out.print(v.get(i) + " ");
+    }
+    System.out.print(v.get(v.size()-1));
+    }
+
+}
