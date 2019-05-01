@@ -1,0 +1,120 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution {
+    
+    
+    
+
+    public static int contientDigit(char x, String s){
+        int cpt = 0 ; 
+        char[] t = s.toCharArray();
+        for(char e : t )
+            if(e == x)
+                cpt++;
+        return cpt;    
+    }
+
+
+    public static String repete(int x, String s){
+        int i = 0 ; 
+        String rep = "";
+        while(i< x){
+            rep = rep+s;
+            i++;
+        }
+        return rep;
+    }
+
+    public static int autantQuePossible(int x,int n){
+        int cpt = 0;
+        while(n%x == 0){
+            cpt++;
+            n = n/x;
+        }
+        return cpt;
+    }
+
+    public static boolean isNumeric(String strNum) {
+        try {
+            Integer d = Integer.parseInt(strNum);
+        } catch (NumberFormatException | NullPointerException nfe) {
+            return false;
+        }
+        return true;
+    }
+   public static boolean estValide(String s){
+        s = s.replaceAll("Fizz", "");
+        s = s.replaceAll("Buzz", "");
+        return s.length() == 0;
+    }
+
+    public static String fb(int n ){
+        String s = String.valueOf(n);
+        int trois = contientDigit('3', s) ;
+        int cinq = contientDigit('5', s) ;
+        String rep = "";
+        if(trois!=0){
+            rep = rep + repete(trois,"Fizz");
+        }
+        if(n%3 == 0){
+            rep = rep + repete(autantQuePossible(3,n),"Fizz");
+           
+        }
+        
+        if(cinq!=0){
+            rep = rep + repete(cinq,"Buzz");
+        }
+        if(n%5 == 0){
+            rep = rep + repete(autantQuePossible(5,n),"Buzz");
+          
+        }
+        if(rep.length()==0){
+            rep = String.valueOf(n);
+        }
+        return rep;
+    }
+
+
+
+    public static void main(String args[]) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        String[] t = new String[n];
+
+        if (in.hasNextLine()) {
+            in.nextLine();
+        }
+        for (int i = 0; i < n; i++) {
+            String row = in.nextLine();
+            t[i] = row;
+        } 
+     for(int j = 0 ; j < t.length ; j++){
+    for(int i = 1; i < 1000; i++){
+        if(isNumeric(t[j])){
+            if(t[j].equals(fb(Integer.parseInt(t[j]) ))) {
+                System.out.println(t[j]);
+            }
+            else{System.out.println("ERROR");}
+            i = 1000;
+        }
+        else if(estValide(t[j])){
+            if(t[j].equals(fb(i))){
+                System.out.println(i);
+                i = 1000;
+            }
+        }
+        else{
+            System.out.println("ERROR");
+            i = 1000;
+        }
+    }
+    }
+
+}
+}
