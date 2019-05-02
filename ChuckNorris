@@ -1,0 +1,95 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution {
+        public static String reverse(String s1){
+        String s2  = "";
+        for(int i = s1.length() - 1 ; i>= 0 ; i--){
+            s2 = s2+s1.charAt(i);
+        }
+        return s2;
+    }
+
+
+        /* DecversBaseI(int x , int base){
+        while(x != 0){
+         res = res + (x % base);
+            x = x / base;
+        }
+        }
+       return String.valueOf(reverse (res));*/
+
+    public static String codeBin(char c ){
+       int x = (int)c;
+        return Integer.toBinaryString(x) ;
+    }
+
+    public static String transforme(String s){
+        String s2 = "0";
+        if(s.equals("0")){
+            s2 = "00";
+        }
+        return s2;
+    }
+
+    public static String zeros(int n){
+        int i = 0 ; 
+        String rep = "";
+        while(i<n){
+            rep = rep+"0";
+            i++;
+        }
+        return rep;
+    }
+
+    public static String sur7bits (String s){
+        String s2 = "";
+        int t = s.length();
+        if(t%7==0){
+            s2 = s ;
+        }
+        else{
+            int manque = 7*(1+(t/7)) - t;
+            s2 = zeros(manque)+s;
+        }
+        return s2;
+    }
+
+    public static String  decompose(String s){
+        String rep = "";
+        char tete = s.charAt(0);
+        int cpt = 0 ;
+        for(int i = 0 ; i < s.length()  ; i++){
+            if(s.charAt(i)== tete){
+                cpt++;
+            }
+            else{
+                rep = rep+transforme(String.valueOf(tete))+" "+ zeros(cpt)+ " ";
+                tete = s.charAt(i);
+                cpt=1;
+            }
+
+        }
+        rep = rep+transforme(String.valueOf(tete))+" "+ zeros(cpt);
+
+        return rep;
+    }
+
+    public static void main(String args[]) {
+        Scanner in = new Scanner(System.in);
+        String s = in.nextLine();
+        
+        String x = "";
+       for (int i = 0 ; i <s.length() ; i++){
+        x = x+sur7bits(codeBin(s.charAt(i)));
+       }
+       System.out.print(decompose(x));
+    }
+
+
+}
