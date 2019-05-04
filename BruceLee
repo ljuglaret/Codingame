@@ -1,0 +1,93 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution {
+
+    
+    public static String repete(int n,String s){
+        int i = 0 ; 
+        String rep = "";
+        while(i<n){
+            rep = rep+s;
+            i++;
+        }
+        return rep;
+    }
+
+
+    public static int depuisBin(String s){
+        return Integer.parseInt(s,2);
+    }
+
+    public static int compte(char c , String l){
+        int cpt = 0;
+        char[]temp = new char[l.length()];
+        temp = l.toCharArray();
+        for(char x : temp){
+            if(c==x){
+                cpt++;
+            }
+        }
+        return cpt;
+    }
+
+    public static String recompose(String s){
+        String[]temp = s.split(" ");
+        ArrayList<String> l= new ArrayList<String>(Arrays.asList(temp));
+        String str = "";
+        int cpt = 0 ; 
+        for(int i = 0 ; i <temp.length - 1 ; i+=2){
+            if(l.get(i).equals("00")){
+                str = str + repete(compte('0',l.get(i+1)),"0" );
+
+            }
+            else
+            {
+            str = str + repete(compte('0',l.get(i+1)),"1"); 
+        } 
+        }
+        
+        return str;
+    }
+
+    public static boolean valide(String[]x){
+        boolean b = true;
+        for(int i = 0 ; i < x.length - 1  ; i+=2){
+            if (!(x[i].equals("0") || x[i].equals("00"))) {
+                b= false;
+            }
+        }
+        return b;
+    }
+
+
+
+    public static void main(String args[]) {
+        Scanner in = new Scanner(System.in);
+        String x0 = in.nextLine();
+    String[]tx = x0.split(" ");
+        String s0 = recompose(x0);
+        if(!valide(tx)||(s0.length() %7!=0)){
+            System.out.println("INVALID");
+        }
+        else{
+        int debut= 0;
+        int fin =7;
+        while(debut<s0.length()){
+            System.out.print((char)depuisBin(s0.substring(debut,fin)));
+            debut = fin ;
+            fin=fin+7;
+        }
+
+        }
+
+        // Write an action using System.out.println()
+        // To debug: System.err.println("Debug messages...");
+
+    }
+}
