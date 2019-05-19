@@ -1,0 +1,75 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution {
+
+//pgcd (a,b) = pgcd(b,r), a <=b
+    public static int pgcd (int a , int b){
+         
+        if (b==0){
+            return a;
+        }
+        else{
+            return pgcd (b,a%b);
+        }
+    }
+
+    public static String reduit (int a , int b ){
+        int newNum = a/pgcd(a,b);
+        int newDen = b/pgcd(a,b);
+
+        String s = newNum+"/"+newDen;
+        return s;
+    }
+
+    public static void affichage(int num , int den){
+        int partie1 = num/den;
+        int num2  = num - den*partie1;
+        if(num%den == 0){
+            System.out.println(partie1);
+        }
+        else{
+            if(partie1 == 0){
+                System.out.println(reduit(num2,den));
+            }
+            else {
+                System.out.println(partie1+" "+reduit(num2,den));}
+        }
+    }
+    
+
+    public static void main(String args[]) {
+        Scanner in = new Scanner(System.in);
+        int N = in.nextInt();
+        for (int i = 0; i < N; i++) {
+            String xY = in.next();
+    
+        String[] s = xY.split("/");
+        int num = Integer.parseInt(s[0]);
+        int den = Integer.parseInt(s[1]);
+        
+
+        if (num==0 && den != 0){
+            System.out.println("0");
+        }
+        else if (den == 0 ){
+            System.out.println("DIVISION BY ZERO");
+        }
+        else {
+            if((num < 0 && den>=0) || (den < 0 && num >=0)){
+                System.out.print("-");
+                affichage(Math.abs (num), Math.abs(den));
+            }
+            else{
+            affichage(Math.abs (num), Math.abs(den));
+            }
+        }
+        }
+    }
+ 
+}
