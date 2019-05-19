@@ -53,20 +53,19 @@ color: violet;
 /* Column container */
 .row {  
   display: flex;
-  flex-wrap: wrap;
 }
 
 /* Create two unequal columns that sits next to each other */
 /* Sidebar/left column */
 .side {
-  flex: 30%;
+  flex: 25%;
   background-color: #f1f1f1;
   padding: 20px;
 }
 
 /* Main column */
 .main {
-  flex: 70%;
+  flex: 50%;
   background-color: white;
   padding: 20px;
 }
@@ -80,9 +79,10 @@ color: violet;
 
 /* Footer */
 .footer {
+  flex:25%;
+  background: #f1f1f1;
   padding: 20px;
-  text-align: center;
-  background: #ddd;
+
 }
 
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
@@ -105,55 +105,92 @@ color: violet;
 
 <!-- The flexible grid (content) -->
 <div class="row">
+
+
   <div class="side">
     <h2>Codes</h2>
     <h3> Easy</h3>
-        <h5><a href =https://github.com/ljuglaret/Codingame/blob/gh-pages/CreditCardVerifier >Credit Card Verifier </a></h5> 
-	  	  <h5><a href = https://github.com/ljuglaret/Codingame/ChuckNorris>Chuck Norris </a></h5>  
-        <h5><a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/PirateTreasure > Pirate's treasure </a></h5>
-        <h5><a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/AddEmUp.java> Add'em Up </a></h5>
-        <h5><a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/TheRiverI.hs > The River 1 </a></h5>
-        <h5><a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/theTravellingSalesmanProblem.hs > The Travelling Salesman  </a></h5>
+    <br><a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/AddEmUp.java> Add'em Up </a></br>
+    <br><a href =https://github.com/ljuglaret/Codingame/blob/gh-pages/CreditCardVerifier >Credit Card Verifier </a></br> 
+  <br><a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/ChuckNorris>Chuck Norris </a></br>  
+  <br><a href = "https://github.com/ljuglaret/Codingame/blob/gh-pages/Defibrillators.java">Defibrillators</a> </br>         
+  <br><a href = "https://github.com/ljuglaret/Codingame/blob/gh-pages/Frog"> 	Frog</a>   </br> 
+  <br><a href = "https://github.com/ljuglaret/Codingame/blob/gh-pages/HorseRacingDuals.java">	Horse Racing Duals</a>   </br> 
+  <br> <a href = "https://github.com/ljuglaret/Codingame/blob/gh-pages/HorseRacingHyperDuals.java">	Horse Racing Hyper Duals </a></br>   
+    <br>  <a href = "https://github.com/ljuglaret/Codingame/blob/gh-pages/HowTimeFlies.java"> 	How Time flies </a>   </br> 
+    <br>  <a href = "https://github.com/ljuglaret/Codingame/blob/gh-pages/ISBN.java"> ISBN </a>   </br> 
+    <br><a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/PirateTreasure > Pirate's treasure </a></br>
+    <br><a href = "https://github.com/ljuglaret/Codingame/blob/gh-pages/Rugby.java">Rugby</a>   </br> 
+    <br><a href = "https://github.com/ljuglaret/Codingame/blob/gh-pages/Ternary"> 	 Ternary </a>   </br> 
+  <br><a href = "https://github.com/ljuglaret/Codingame/blob/gh-pages/Temperatures.java"> Temperatures </a> </br>   
+  <br><a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/TheRiverI.hs > The River 1 </a></br>
+    <br><a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/theTravellingSalesmanProblem.hs > The Travelling Salesman  </a></br>
 
-
-    <h3> Medium</h3>
-
-	  <h5><a href = https://github.com/ljuglaret/Codingame/BruceLee>Bruce Lee </a></h5>  
-	  <h5><a href = https://github.com/ljuglaret/Codingame/FirstContact>First Contact </a></h5>  
-	  <h5><a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/TheReplacement.java>Find The Replacement </a></h5>  
-      <h5><a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/MagicSquare.java >Magic Square  </a></h5>  
-	<h5> <a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/MicroAssembly.java>	  Micro Assembleur </a></h5> 
-	<h5><a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/MonthlySystem>Monthly System </a></h5>  
-      <h5><a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/Shadows%20of%20the%20Knight%20-%20Episode%201 >Shadows Of The Night </a></h5>  
-      <h5><a href = https://github.com/ljuglaret/Codingame/SumOfDivisors>Sum Of Divisors </a></h5>  
-      <h5><a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/TheLastCrusadeI.java>The Last Crusade </a></h5>  
+ 
 
 	</div>
 
   <div class="main">
-        
-    <h2> Extremums </h2>
- <p> Calculer un maximum ou bien un minimum est simple.</p>
-        <p> En revanche mettre en place son implémentation peut faire émerger certains problèmes :	</p>
-        <p> limiter le nombre d operations, comparer des nombres flottants, comprendre le critere de tri. </p>
-        <p> Cet article apporte des réponses à ces questions à  travers differents problemes, tels que </p>
-         <a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/HorseRacingDuals.java> Horse Racing 1 </a>
-          et <a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/HorseRacingHyperDuals.java>2</a> , 
-          <a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/Frog>Frog</a>...  </p>
-	<p> <a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/Extr.html> Lien </a> </p>
+    
+    <h2> Avoir les bases</h2>
+    D une base "traditionnelle " comme la base 2 , ou bien unaire <a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/ChuckNorris > Chuck Norris</a>
+   et <a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/BruceLee > BruceLee</a> a une base en peut moins utilisee comme la base 12 <a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/MonthlySystem> Monthly System</a>
+    en passant par la base ternaire modifiee : (0,1,2) -> (-1,0,1), <a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/TritsBalanced > Trits Balanced</a> et <a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/Ternary > Ternary</a>
+
+    condingame offre de nombreuses ccasions de tester sa bonne compréhension de ce qu'est une changement de base.
+     
+    <h2>Extremum </h2>
+
+     <p> Calculer un maximum ou bien un minimum est simple.
+     En revanche mettre en place son implémentation peut faire émerger certains problèmes :	
+     limiter le nombre d operations, comparer des nombres flottants, comprendre le critere de tri. 
+     </p>
+     <p>
+     Cet article apporte des réponses à ces questions à  travers differents problemes, tels que 
+     <a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/HorseRacingDuals.java> Horse Racing 1 </a>
+     et <a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/HorseRacingHyperDuals.java>2</a> , 
+     <a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/Frog>Frog</a>...  
+    </p>
 
     <h2> Utilisation de HashMap dans The Last Crusade </h2>
 	          <a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/TlcI.html> Lien </a> 
     
-    </div>
-		
+  
+  
+  
+   </div>
+    
+   <div class = "footer">
+      <h2>Codes</h2>
+      <h3> Medium</h3>
+
+
+      <br><a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/BruceLee>Bruce Lee </a></br>  
+  
+      <br><a href =  https://github.com/ljuglaret/Codingame/blob/gh-pages/CarmichaelNumbers> Carmichael Numbers  </a>  </br> 
+      <br><a href =  https://github.com/ljuglaret/Codingame/blob/gh-pages/DigitSumSuccessor> Digit Sum Successor</a></br> 
+      <br><a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/FirstContact>First Contact </a></br>  
+      <br><a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/TheReplacement.java>Find The Replacement </a></br>  
+      <br><a href =  https://github.com/ljuglaret/Codingame/blob/gh-pages/KaprekarsRoutine> Kaprekar s Routine  </a> </br>   
+      <br><a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/MagicSquare.java >Magic Square  </a></br>  
+      <br><a href =  https://github.com/ljuglaret/Codingame/blob/gh-pages/MagicStones> Magic Stones	</a>  </br> 
+      <br> <a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/MicroAssembly.java>	  Micro Assembleur </a></br> 
+    <br><a href = https://github.com/ljuglaret/Codingame/blob/gh-pages/MonthlySystem>Monthly System </a></br>  
+    <br><a href =  https://github.com/ljuglaret/Codingame/blob/gh-pages/NumberOfLettersInANumberBinary> Number of letters in a number - Binary</a>  </br> 
+    <br><a href =  https://github.com/ljuglaret/Codingame/blob/gh-pages/NumeralSystem> Numeral System</a>  </br> 
+    <br><a href =  https://github.com/ljuglaret/Codingame/blob/gh-pages/Shadows%20of%20the%20Knight%20-%20Episode%201> Shadows Of The Knight Episode 1 </a>  </br>  
+    <br><a href =  https://github.com/ljuglaret/Codingame/blob/gh-pages/StockExchange> Stock Exchange</a>  </br> 
+    <br><a href =  https://github.com/ljuglaret/Codingame/blob/gh-pages/SumOfDivisors> Sum Of Divisors 	</a>   </br> 
+    <br><a href =  https://github.com/ljuglaret/Codingame/blob/gh-pages/TritsBalanced> Trits Balanced 	</a>    </br> 
+    <br>   <a href =  https://github.com/ljuglaret/Codingame/blob/gh-pages/TheLastCrusadeI> The Last CrusadeI </a> </br>   
+   <br>  <a href =  https://github.com/ljuglaret/Codingame/blob/gh-pages/TheReplacement>The Replacement </a> </br> 
+   
+  </div>
 
 
     </div>
+    
 
-<!-- Footer -->
-<div class="footer">
-</div>
 
 </body>
 </html>
